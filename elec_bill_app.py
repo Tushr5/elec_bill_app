@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-def calculate_msedcl_bill(units):
+def calculate_elec_bill(units):
     slabs = [
         (100, 4.71, 0.25),
         (200, 10.29, 0.40),
@@ -61,11 +61,11 @@ def calculate_msedcl_bill(units):
 
     return pd.DataFrame(bill_data)
 
-st.set_page_config(page_title="MSEDCL Bill Calculator", layout="centered")
+st.set_page_config(page_title="Electricity Bill Calculator", layout="centered")
 st.title("⚡ Electricity Bill Calculator")
 units = st.number_input("Enter units consumed", min_value=0, step=1)
 if units > 0:
-    bill_df = calculate_msedcl_bill(units)
+    bill_df = calculate_elec_bill(units)
     st.write("### 📄 Your Bill Breakdown")
     st.dataframe(bill_df, use_container_width=True)
     st.success(f"✅ Total Bill: ₹{bill_df['Amount (₹)'].iloc[-1]:,.2f}")
